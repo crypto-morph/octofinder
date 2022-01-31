@@ -2,15 +2,22 @@
 
 ## The Quest
 
-Would you like to know the 'easiest' words that your (Octorand Prime)[https://octorand.com/] can be renamed to from a big dictionary of 8 letter words? If so, read on! 
+(Octorand Prime)[https://octorand.com/] is an amazing Algorand based project.  There are 1000 Prime Octorand in existance and they all have randomly generated names - 8 letters long.   They generate a crypto-token called an (Octo)[https://tinychart.org/asset/559219992] on a fixed schedule.   
+
+You can spend 10 Octo to rename your Octorand - but the trick is:
+  * you can only move one letter at a time
+  * they can only move one step in the alphabet (a "C" can only become a "B" or a "D")
+  * Each move costs 10 of your hard earned Octo   
+
+Thus it becomes interesting to the average Prime owner to know which words are 'easiest' for your beloved Octo to make. 
 
 ## What is it?
 
-This script takes the current 'name' of an (Octorand Prime)[https://octorand.com/] from the command line and calculates the number of 'turns' it would take to make all the words defined in `words.txt`.
+This Python script takes the current 'name' of an (Octorand Prime)[https://octorand.com/] from the command line and calculates the number of 'turns' it would take to make all the words defined in `words.txt`.
 
 ## Configure
 
-Edit line 6 of the script to set the threshold (default: 17).  No word with more than this number of turns will be printed. 
+Edit line 6 of the script to set the threshold (default: 17).  No word with more than this number of 'turns' will be printed if you set this higher, the list gets very big very quickly) 
 
 ## Run
 
@@ -45,3 +52,5 @@ biforate = 12
 ```
 
 (Note: blipping is an awesome word)
+
+Hope this helps someone - I am no Python Programmer - but enjoyed learning how to do this in Python - and help support an amazing Algorand based project!
