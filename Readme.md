@@ -2,14 +2,14 @@
 
 ## The Quest
 
-[Octorand Prime](https://octorand.com/) is an amazing Algorand based project.  There are 1000 Prime Octorand in existance and they all have randomly generated names - 8 letters long.   They generate a crypto-token called an [Octo](https://tinychart.org/asset/559219992) on a fixed schedule.   
+This tool helps with the [Octorand](https://octorand.com/) game. In Octorand there are 1000 Prime Octorand NFTs in existance and they all have randomly generated names - 8 letters long.   They generate a crypto-token called an [Octo](https://tinychart.org/asset/559219992) on a fixed schedule.  They sit on the Algorand blockchain.   
 
-You can spend 10 Octo to rename your Octorand - but the trick is:
+You can rename your Octorand - but the rules are:
   * you can only move one letter at a time
   * they can only move one step in the alphabet (a "C" can only become a "B" or a "D")
   * Each move costs 10 of your hard earned Octo   
 
-Thus it becomes interesting to the average Prime owner to know which words are 'easiest' for your beloved Octo to make. 
+Thus it becomes interesting to the average Octorand Prime owner to know which words are 'easiest' from your starting position. 
 
 ## What is it?
 
@@ -17,7 +17,9 @@ This Python script takes the current 'name' of an [Octorand Prime](https://octor
 
 ## Configure
 
-Edit line 6 of the script to set the threshold (default: 17).  No word with more than this number of 'turns' will be printed if you set this higher, the list gets very big very quickly) 
+Edit line 6 of the script to set the threshold (default: 17).  No word with more than this number of 'turns' will be printed.
+
+If you set this higher, the list gets very long very quickly. 
 
 ## Run
 
