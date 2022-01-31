@@ -2,7 +2,7 @@
 
 ## The Quest
 
-(Octorand Prime)[https://octorand.com/] is an amazing Algorand based project.  There are 1000 Prime Octorand in existance and they all have randomly generated names - 8 letters long.   They generate a crypto-token called an (Octo)[https://tinychart.org/asset/559219992] on a fixed schedule.   
+[Octorand Prime](https://octorand.com/) is an amazing Algorand based project.  There are 1000 Prime Octorand in existance and they all have randomly generated names - 8 letters long.   They generate a crypto-token called an [Octo](https://tinychart.org/asset/559219992) on a fixed schedule.   
 
 You can spend 10 Octo to rename your Octorand - but the trick is:
   * you can only move one letter at a time
@@ -13,7 +13,7 @@ Thus it becomes interesting to the average Prime owner to know which words are '
 
 ## What is it?
 
-This Python script takes the current 'name' of an (Octorand Prime)[https://octorand.com/] from the command line and calculates the number of 'turns' it would take to make all the words defined in `words.txt`.
+This Python script takes the current 'name' of an [Octorand Prime](https://octorand.com/) from the command line and calculates the number of 'turns' it would take to make all the words defined in `words.txt`.
 
 ## Configure
 
@@ -21,7 +21,7 @@ Edit line 6 of the script to set the threshold (default: 17).  No word with more
 
 ## Run
 
-Run from a python machine with `python3 autocryptofinder.py` - or use https://trinket.io/features/python3 from the Web (you'll have to import both `words.txt` and `autooctofinder.py`)
+Run from a python machine with `python3 autocryptofinder.py` - or use [Trinket](https://trinket.io/features/python3) from the Web (you'll have to import both `words.txt` and `autooctofinder.py`)
 
 ## Adding more words
 
