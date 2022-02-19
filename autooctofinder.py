@@ -44,12 +44,20 @@ else:
       targetValues[i] = ord(target[i]) - 97 
       moves = findDifference(targetValues[i],startValues[i])
       totalmoves = totalmoves + moves
-    results[target] = totalmoves
+      score = str(sum(targetValues)) #score of new word
+    results[target] = [totalmoves,score]
 
 # Output the result
 
 print("results\n-----\n")
 sortedresults = sorted(results.items(), key=lambda x: x[1], reverse=True)
+
+with open('words_alpha.txt') as f:
+  wordsmith_words = f.read()
+
 for i in sortedresults:
-  if (i[1] <= threshold):
-    print(i[0] + " = " + str(i[1]))
+  if (i[1][0] <= threshold):
+    if (wordsmith_words.find(i[0])!= -1):
+      print(i[0] + " = Moves required: " + str(i[1][0])+". Score of new word: "+str(i[1][1]))
+    else:
+      print(i[0] + " = Moves required: " + str(i[1][0])+". Score of new word: "+str(i[1][1])+". Warning, word will not give Wordsmith badge automatically. Request for it to be added in #words channel")
