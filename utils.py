@@ -15,7 +15,7 @@ def split(word):
   return [char for char in word]
 
 def check(word):
-  return (len(word) != gen1_traits_len) or (word == "") or (not word.isalpha())
+  return (len(word) == gen1_traits_len) or (word == "") or (not word.isalpha())
 
 def findDifference(start,target):
    result = abs(start-target)
