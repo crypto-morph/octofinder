@@ -35,7 +35,7 @@ def calculateWords(start, words, maxTurns):
       score += ord(target[i]) - 65
     if totalmoves <= maxTurns:
       results[target] = [int(totalmoves),int(score)]
-   return results
+    return results
    
 ## Helpers ##
 
