@@ -143,4 +143,5 @@ if __name__ == '__main__':
     config = yaml.safe_load(stream)
 
     client.words_file_path = config['words_file_path']
+    client.wordsmith_words_file_path = config['wordsmith_words_file_path']
     client.run(config['bot_key'])
