@@ -17,11 +17,16 @@ class DiscordClientBot(discord.Client):
         super().__init__(*args, **kwargs)
 
         self.words_file_path = str()
+        self.wordsmith_words_file_path = str()
         self.words = set()
+        self.wordsmith_words = set()
+        
 
     def loadWords(self):
         with open(self.words_file_path) as f:
             self.words = set(f.read().splitlines())
+        with open(self.words_file_path) as f:
+            self.wordsmith_words = set(f.read())
 
     async def runAutoOctoFinder(self, message):
         
@@ -77,16 +82,18 @@ class DiscordClientBot(discord.Client):
         # limitation.
         header_embed = discord.Embed()
         header_embed.add_field(name=
-        "---Morph's Auto Octo Finder---\n\nWords within {0} turns:\n".format(maxTurns), value="---------",inline=True)
+        "---Morph's Auto Octo Finder---\n\nWords within {0} turns:\nWarning, words starting with ! will not give the Wordsmith badge automatically. You will have to request for the word to be added in the #words channel\nResults are given with NewWord = NumberOfTurn NewWordScore\n".format(maxTurns), value="---------",inline=True)
         await channel.send(embed=header_embed)
         
         embed_results_string = str()
         turns = int()
         for pair in sortedResults:
-            turns = pair[1]
+            turns = pair[1][0]
             if turns <= maxTurns:
-                embed_results_string += str("{0} = {1}\n".format(pair[0],pair[1]))
-
+                if (client.wordsmith_words.find(i[0])!= -1):
+                    embed_results_string += str("{0} = {1} {2}\n".format(pair[0],pair[1][0],pair[1][1]))
+                else:
+                    embed_results_string += str("!{0} = {1} {2}\n".format(pair[0],pair[1][0],pair[1][1]))
                 if len(embed_results_string) >= utils.embed_max_len:
                     sub_embed = discord.Embed()
                     sub_embed.add_field(name=utils.dash_separator,value=embed_results_string,inline=False)
@@ -106,7 +113,7 @@ class DiscordClientBot(discord.Client):
 
         csv_content = "WORDS,TURNS"
         for item in sortedResults:
-            csv_content += ("{0},{1}\n".format(item[0],item[1]))
+            csv_content += ("{0},{1},{2}\n".format(item[0],item[1][0],item[1][1]))
         
         f.write(csv_content)
         f.close()

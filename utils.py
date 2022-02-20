@@ -18,22 +18,25 @@ def check(word):
   return (len(word) != gen1_traits_len) or (word == "") or (not word.isalpha())
 
 def findDifference(start,target):
-   result = abs(start-target)
-   return (result)
+  result = abs(start-target)
+  return (result)
 
 def calculateWords(start, words, maxTurns):
-   results = dict()
-   for target in words:
+  results = dict()
+  for target in words:
     target = target.upper()
     totalmoves = 0
+    score = 0
     for i in range(gen1_traits_len):
       lValue = ord(target[i])
       rValue = ord(start[i])
       moves = findDifference(lValue,rValue)
       totalmoves += moves
+      score += ord(target[i]) - 65
     if totalmoves <= maxTurns:
-        results[target] = int(totalmoves)
+      results[target] = [int(totalmoves),int(score)]
    return results
+   
 ## Helpers ##
 
 
