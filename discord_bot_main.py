@@ -17,11 +17,16 @@ class DiscordClientBot(discord.Client):
         super().__init__(*args, **kwargs)
 
         self.words_file_path = str()
+        self.wordsmith_words_file_path = str()
         self.words = set()
+        self.wordsmith_words = set()
+        
 
     def loadWords(self):
         with open(self.words_file_path) as f:
             self.words = set(f.read().splitlines())
+        with open(self.wordsmith_words_file_path) as f:
+            self.wordsmith_words = set(f.read().splitlines())
 
     async def runAutoOctoFinder(self, message):
         
@@ -78,15 +83,21 @@ class DiscordClientBot(discord.Client):
         header_embed = discord.Embed()
         header_embed.add_field(name=
         "---Morph's Auto Octo Finder---\n\nWords within {0} turns:\n".format(maxTurns), value="---------",inline=True)
+        header_embed.add_field(name="Warning",value="words starting with ! will not give the Wordsmith badge automatically. You will have to request for the word to be added in the #words channel\n",inline=True)
+        header_embed.add_field(name="Results are given with NewWord = NumberOfTurn NewWordScore\n",value="---------",inline=True)
         await channel.send(embed=header_embed)
         
         embed_results_string = str()
         turns = int()
+        score = int()
         for pair in sortedResults:
-            turns = pair[1]
+            turns = pair[1][0]
+            score = pair[1][1]
             if turns <= maxTurns:
-                embed_results_string += str("{0} = {1}\n".format(pair[0],pair[1]))
-
+                if (pair[0].lower() in client.wordsmith_words):
+                    embed_results_string += str("{0} = {1} {2}\n".format(pair[0],turns,score))
+                else:
+                    embed_results_string += str("!{0} = {1} {2}\n".format(pair[0],turns,score))
                 if len(embed_results_string) >= utils.embed_max_len:
                     sub_embed = discord.Embed()
                     sub_embed.add_field(name=utils.dash_separator,value=embed_results_string,inline=False)
@@ -104,9 +115,9 @@ class DiscordClientBot(discord.Client):
         results_file_name = "{0}_{1}_words.csv".format(traits, maxTurns)
         f = open(results_file_name,"w",encoding="utf-8")
 
-        csv_content = "WORDS,TURNS"
+        csv_content = "WORDS,TURNS,SCORE"
         for item in sortedResults:
-            csv_content += ("{0},{1}\n".format(item[0],item[1]))
+            csv_content += ("{0},{1},{2}\n".format(item[0],item[1][0],item[1][1]))
         
         f.write(csv_content)
         f.close()
@@ -136,4 +147,5 @@ if __name__ == '__main__':
     config = yaml.safe_load(stream)
 
     client.words_file_path = config['words_file_path']
+    client.wordsmith_words_file_path = config['wordsmith_words_file_path']
     client.run(config['bot_key'])
