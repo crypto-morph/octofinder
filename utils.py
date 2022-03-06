@@ -27,15 +27,15 @@ def calculateWords(start, words, maxTurns):
     target = target.upper()
     totalmoves = 0
     score = 0
-    for i in range(gen1_traits_len):
-      lValue = ord(target[i])
-      rValue = ord(start[i])
-      moves = findDifference(lValue,rValue)
-      totalmoves += moves
-      score += ord(target[i]) - 65
-    if totalmoves <= maxTurns:
-      results[target] = [int(totalmoves),int(score)]
-      print(results[target])
+    if len(target) == 8: # only considers 8 characters words
+      for i in range(gen1_traits_len):
+        lValue = ord(target[i])
+        rValue = ord(start[i])
+        moves = findDifference(lValue,rValue)
+        totalmoves += moves
+        score += ord(target[i]) - 65
+      if totalmoves <= maxTurns:
+        results[target] = [int(totalmoves),int(score)]
   return results
    
 ## Helpers ##
