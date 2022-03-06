@@ -5,9 +5,9 @@ name: OctoFinder Utils Unit Tests
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, stage ]
   pull_request:
-    branches: [ main ]
+    branches: [ main, stage ]
 
 jobs:
   build:
