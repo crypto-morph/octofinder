@@ -158,6 +158,6 @@ if __name__ == '__main__':
     # This is required when running the bot from a hosted instance
     # such as Heroku or GitHub Actions
     if len(bot_token) == 0:
-        bot_token = os.getenv['BOT_TOKEN']
+        bot_token = os.getenv('BOT_TOKEN')
 
     client.run(bot_token)
