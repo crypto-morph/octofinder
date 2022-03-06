@@ -1,0 +1,1 @@
+web: python discord_bot_main.py
