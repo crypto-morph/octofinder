@@ -10,6 +10,9 @@ import utils
 ## YAML used for configuring data fields ##
 import yaml
 
+## Currently used to access environment variables
+import os
+
 ## Simple class that derives from discord.Client. Implement
 ## event handlers to customize behavior.
 class DiscordClientBot(discord.Client):
@@ -148,4 +151,13 @@ if __name__ == '__main__':
 
     client.words_file_path = config['words_file_path']
     client.wordsmith_words_file_path = config['wordsmith_words_file_path']
-    client.run(config['bot_key'])
+
+    bot_token = config['bot_key']
+    
+    # If the config is empty, attempt to load the token from the env.
+    # This is required when running the bot from a hosted instance
+    # such as Heroku or GitHub Actions
+    if len(bot_token) == 0:
+        bot_token = os.getenv['BOT_TOKEN']
+
+    client.run(bot_token)
